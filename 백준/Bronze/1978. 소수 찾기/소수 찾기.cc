@@ -1,34 +1,26 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
-void Func(int n, int& res)
+bool Func(int n)
 {
-	int sum = 0;
-	for (int i = 1; i <= n; i++)
+	if (n < 2)return false;
+	for (int i = 2; i * i <= n; i++)
 	{
-		if (n % i == 0) sum++;
+		if (n % i == 0) return false;
 	}
-	if (sum == 2) res++;
+	return true;
 }
-int main() 
+int main()
 {
-	int n;
-	int res = 0;
-	vector<int> v;
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr); cout.tie(nullptr);
 
+	int n, res = 0;
 	cin >> n;
 	for (int i = 0; i < n; i++)
 	{
-		int input;
-		cin >> input;
-		v.push_back(input);
+		int input; cin >> input;
+		if (Func(input)) res++;
 	}
-
-	for (int i = 0; i < n; i++)
-	{
-		Func(v[i], res);
-	}
-
 	cout << res;
 }
