@@ -3,32 +3,38 @@
 #include <algorithm>
 using namespace std;
 
-const int MAX = 1'000'000;
-int dp[MAX +1];
-void Func()
-{
-	int div = 1000000009; //나눠야 하는 수
-	dp[0] = 1;
-	for (int i = 1; i <= MAX; i++)
-	{
-		if (i - 1 >= 0) dp[i] = (dp[i] + dp[i - 1]) % div;
-		if (i - 2 >= 0) dp[i] = (dp[i] + dp[i - 2]) % div;
-		if (i - 3 >= 0) dp[i] = (dp[i] + dp[i - 3]) % div;
-	}
-}
+const int MAX_SIZE = 1'000'000;
+const int MOD = 1'000'000'009;
+long long arr[MAX_SIZE + 1] = { 0, };
+
 int main()
 {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
+    ios::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
 
-	int n;
-	cin >> n;
-	Func();
-	for (int i = 0; i < n; i++)
-	{
-		int a;
-		cin >> a;
+    int T;
+    cin >> T;
 
-		cout << dp[a]<< '\n';
-	}
+    vector<int> inputs(T);
+    int max_n = 0;
+    for (int i = 0; i < T; i++)
+    {
+        cin >> inputs[i];
+        if (inputs[i] > max_n) max_n = inputs[i];
+    }
+
+    arr[0] = 1;
+    arr[1] = 1;
+    arr[2] = 2;
+    arr[3] = 4;
+
+    for (int i = 4; i <= max_n; i++)
+    {
+        arr[i] = (arr[i - 1] + arr[i - 2] + arr[i - 3]) % MOD;
+    }
+
+    for (int i : inputs)
+    {
+        cout << arr[i] << '\n';
+    }
 }
