@@ -4,8 +4,6 @@ using namespace std;
 
 string solution(string s, string skip, int index) 
 {
-	int i = 0;
-	
 	for (int i = 0; i < s.size(); i++)
 	{
 
