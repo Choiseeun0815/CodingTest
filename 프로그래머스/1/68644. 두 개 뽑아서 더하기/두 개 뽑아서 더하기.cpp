@@ -4,22 +4,17 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> solution(vector<int> numbers) {
-	vector<int> answer;
-	set<int> s1;
-	
-	for (int i = 0; i < numbers.size(); i++)
+vector<int> solution(vector<int> arr)
+{
+	set<int> s;
+	for (int i = 0; i < arr.size(); i++)
 	{
-		for (int j = i + 1; j < numbers.size(); j++)
+		for (int j = 0; j < arr.size(); j++)
 		{
-			int sum = numbers[i] + numbers[j];
-			s1.insert(sum);
+			if (i == j) continue;
+			s.insert(arr[i] + arr[j]);
 		}
 	}
-	
-	for (set<int>::iterator i = s1.begin(); i != s1.end(); i++)
-	{
-		answer.push_back(*i);
-	}
-	return answer;
+	vector<int> vec(s.begin(), s.end());
+	return vec;
 }
