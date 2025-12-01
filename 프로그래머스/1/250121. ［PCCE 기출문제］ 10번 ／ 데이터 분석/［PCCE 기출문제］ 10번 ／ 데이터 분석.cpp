@@ -23,7 +23,7 @@ vector<vector<int>> solution(vector<vector<int>> data, string ext, int val_ext, 
 		idx = sort_by_idx - compare.begin();
 	cout << "sort_by_idx : " << idx << " : " << compare[idx] << endl;
 
-	sort(answer.begin(), answer.end(), [&](vector<int> a, vector<int> b)
+	sort(answer.begin(), answer.end(), [&](const vector<int>& a,const vector<int>& b)
 		{
 			return a[idx] < b[idx];
 		});
